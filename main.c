@@ -19,14 +19,12 @@ int main(void)
     const char  *path;
     char        *read;
 
-    lines = 3;
+    lines = 6;
     path = "test_file.txt";
     fd = open(path, O_RDONLY);
-//   printf ("Number of lines to print: ");
-//    scanf("%d", &lines);
     for (i = 0; i < lines; i++)
     {
-        read = get_next_line(fd);
-        //printf("%s", read);
+       read = get_next_line(fd);
+       printf("%s", read);
     }
 }

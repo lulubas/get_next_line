@@ -106,7 +106,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	n;
 	size_t	n1;
 	size_t	n2;
-
+	
+	if (!s1)
+		return((char *)s2);
+	if (!s2)
+		return((char *)s1);		
 	n1 = ft_strlen((char *)s1);
 	n2 = ft_strlen((char *)s2);
 	n = n1 + n2;
