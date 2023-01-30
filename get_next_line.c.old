@@ -14,38 +14,42 @@
 char	*get_next_line(int fd)
 {
 	char			*buff_str;
-	char			*to_print;
+	char			*next_line;
 	int				n;
-	static char		*to_parse;
-	int				len;
+	static int		end_of_read;
 
 	buff_str = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buff_str)
 		return (NULL);
 	n = read(fd, buff_str, BUFFER_SIZE);
-	printf("\nn = %d\nto_parse = %s\nbuffer = %s\n", n, to_parse, buff_str);
-	to_parse = ft_strjoin(to_parse, buff_str);
-	free(buff_str);
-	if (!ft_strchr(to_parse, '\n') && n)
+	printf("\nn = %d\nbuffer = %s\n", n, buff_str);
+	if (n < 0 || (n == 0 && !end_of_read))
 	{
-		printf("printf_in_loop: %s", to_parse);
-		to_parse = get_next_line(fd);
+		free(buff_str);
+		return (NULL);
 	}
-	if (!n)
-		return(to_parse);
-	len = ft_strchr(to_parse, 10) - to_parse;
-	printf("\nlen = %d\n", len);	
-	to_print = ft_strndup(to_parse, len + 1);
-	to_parse = ft_strchr(to_parse, 10);
-	return (to_print);
+	buff_str[n] = '\0';
+	if (n < BUFFER_SIZE)
+		end_of_read = 1;
+	next_line = ft_line_to_print(buff_str, end_of_read);
+	printf("\nnext line= %s\n", next_line);
+	if (!next_line && !end_of_read)
+		next_line = get_next_line(fd);
+	else
+		free (buff_str);
+	return (next_line);
 }
 
-/*
-int	ft_line_to_print(char *str)
+char	*ft_line_to_print(char *buff_str, int end_of_read)
 {
 	int				index;
+	static int		end_of_print;
+	char			*to_print;
+	static char		*to_parse;
 
 	index = 0;
+	to_parse = ft_strjoin(to_parse, buff_str);
+			printf("\ntoparse ft = %s\n", to_parse);
 	while (to_parse[index])
 	{
 		if (to_parse[index] == 10)
@@ -63,5 +67,3 @@ int	ft_line_to_print(char *str)
 	}
 	return (NULL);
 }
- 	printf("\nn = %d\nbuffer = %s\n", n, buff_str);
-*/

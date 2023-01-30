@@ -24,6 +24,18 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+char	*ft_strchr(const char *str, int c)
+{
+	char	a;
+
+	a = c;
+	while (*str && *str != a)
+		str++;
+	if (*str != a)
+		return (0);
+	return ((char *)str);
+}
+
 char	*ft_strndup(const char *str, unsigned int len)
 {
 	size_t	n;

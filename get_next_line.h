@@ -21,6 +21,7 @@
 char	*get_next_line(int fd);
 char	*ft_line_to_print(char *buff_str, int end_of_file);
 size_t	ft_strlen(const char *str);
+char	*ft_strchr(const char *str, int c);
 char	*ft_strndup(const char *str, unsigned int len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t n);

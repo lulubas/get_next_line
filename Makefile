@@ -6,18 +6,15 @@
 #    By: lbastien <lbastien@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 17:37:16 by lbastien          #+#    #+#              #
-#    Updated: 2023/01/27 17:52:44 by lbastien         ###   ########.fr        #
+#    Updated: 2023/01/30 15:05:24 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard variables
 
 NAME		=	get_next_line.a
-INCLUDE_DIR	= 	
-SRC_DIR 	=	
-OBJ_DIR		=	obj/
 CC			=	gcc
-CFLAGS		=	-D BUFFER_SIZE=10 -Wall -Werror -Wextra -I
+CFLAGS		=	-D BUFFER_SIZE=1 -Wall -Werror -Wextra -I
 RM			=	rm -f
 AR			=	ar rcs
 
@@ -35,14 +32,10 @@ WHITE = \033[0;97m
 
 #Sources
 
-SRC_FILES =	get_next_line get_next_line_utils
-
-SRCS 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
-OBJS 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+SRCS 		= 	get_next_line.c get_next_line_utils.c
+OBJS 		=	$(SRCS:.c=.o)
 
 #exe
-
-OBJ_F		=	.cache_exists
 
 all:		$(NAME)
 
@@ -50,14 +43,12 @@ $(NAME):	$(OBJS)
 			@$(AR) $(NAME) $(OBJS)
 			@echo "$(GREEN)Successfully compiled!$(DEF_COLOR)"
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJ_F)
+%.o: 		%.c
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
-
-$(OBJ_F):
-			@mkdir -p $(OBJ_DIR)
+			@$(CC) $(CFLAGS) -I./ -c $< -o $@
+			
 clean:
-			@$(RM) -rf $(OBJ_DIR)
+			@$(RM) $(OBJS)
 			@echo "$(BLUE)Objects files cleaned!$(DEF_COLOR)"
 
 fclean:		clean
@@ -68,6 +59,6 @@ re:			fclean all
 			@echo "$(GREEN)Cleaned and rebuilt everything!$(DEF_COLOR)"
 
 norm:
-	@norminette $(SRCS) $(INCLUDES) | grep -v Norme -B1 || true
+	@norminette $(SRCS) | grep -v Norme -B1 || true
 
 .PHONY: all, clean, fclean, re, norm
