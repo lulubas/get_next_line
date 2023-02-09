@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 17:37:16 by lbastien          #+#    #+#              #
-#    Updated: 2023/01/30 15:05:24 by lbastien         ###   ########.fr        #
+#    Updated: 2023/02/09 13:46:59 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME		=	get_next_line.a
 CC			=	gcc
-CFLAGS		=	-D BUFFER_SIZE=1 -Wall -Werror -Wextra -I
+CFLAGS		=	-g -D BUFFER_SIZE=1 -Wall -Werror -Wextra -I
 RM			=	rm -f
 AR			=	ar rcs
 

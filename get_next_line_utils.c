@@ -16,11 +16,8 @@ size_t	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
-	while (*str)
-	{
+	while (str[i])
 		i++;
-		str++;
-	}
 	return (i);
 }
 
@@ -28,6 +25,8 @@ char	*ft_strchr(const char *str, int c)
 {
 	char	a;
 
+	if (!str)
+		return (0);
 	a = c;
 	while (*str && *str != a)
 		str++;
@@ -51,28 +50,6 @@ char	*ft_strndup(const char *str, unsigned int len)
 	return (ctr);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t n)
-{
-	size_t	i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (src[j] != 0)
-		j++;
-	if (n == 0)
-		return (j);
-	while (*src && i < n - 1)
-	{
-		*dst = *src;
-		i++;
-		dst++;
-		src++;
-	}
-	*dst = 0;
-	return (j);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
@@ -81,16 +58,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	n2;
 
 	if (!s1)
-		return ((char *)s2);
+		return (ft_strndup(s2, ft_strlen(s2)));
 	if (!s2)
-		return ((char *)s1);
+		return (ft_strndup(s1, ft_strlen(s1)));
 	n1 = ft_strlen((char *)s1);
 	n2 = ft_strlen((char *)s2);
 	n = n1 + n2;
 	str = (char *)malloc(sizeof(char) * n + 1);
 	if (!str)
-		return (0);
-	ft_strlcpy(str, s1, n1 + 1);
+		return (NULL);
+	ft_strlcat(str, s1, n1 + 1);
 	ft_strlcat(str, s2, n + 1);
 	return (str);
 }

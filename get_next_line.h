@@ -17,9 +17,11 @@
 # include<stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <string.h>
 
 char	*get_next_line(int fd);
 char	*ft_line_to_print(char *buff_str, int end_of_file);
+char	*ft_get_buf(int fd, char *to_parse);
 size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strndup(const char *str, unsigned int len);
