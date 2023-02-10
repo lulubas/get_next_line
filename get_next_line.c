@@ -43,6 +43,7 @@ char	*ft_get_buf(int fd, char *to_parse)
 		buff_str = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 		if (!buff_str)
 			return (NULL);
+		buff_str[BUFFER_SIZE] = '\0';
 		n = read(fd, buff_str, BUFFER_SIZE);
 		if (!n)
 		{	
@@ -55,29 +56,34 @@ char	*ft_get_buf(int fd, char *to_parse)
 			return (NULL);
 		}
 		to_parse = ft_strjoin(to_parse, buff_str);
-		free (buff_str);
 	}
 	return (to_parse);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t n)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	i;
-	int		j;
+	char	*str;
+	size_t	n1;
+	size_t	n2;
 
-	i = 0;
-	j = 0;
-	while (src[j] != 0)
-		j++;
-	if (n == 0)
-		return (j);
-	while (*src && i < n - 1)
+	if (!s1)
 	{
-		*dst = *src;
-		i++;
-		dst++;
-		src++;
+		str = ft_strndup(s2, ft_strlen(s2));
+		return (str);
 	}
-	*dst = 0;
-	return (j);
+	else if (!s2)
+	{
+		str = ft_strndup(s1, ft_strlen(s1));
+		return (str);
+	}
+	else if (!s1 && !s2)
+		return (NULL);
+	n1 = ft_strlen((char *)s1);
+	n2 = ft_strlen((char *)s2);
+	str = (char *)malloc(sizeof(char) * (n1 + n2) + 1);
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, n1 + 1);
+	ft_strlcat(str, s2, n1 + n2 + 1);
+	return (str);
 }
