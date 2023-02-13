@@ -49,6 +49,7 @@ char	*ft_strndup(char *str, size_t len)
 	if (!ctr)
 		return (0);
 	ft_strlcpy(ctr, str, len + 1);
+	free (str);
 	return (ctr);
 }
 
@@ -71,7 +72,6 @@ size_t	ft_strlcat(char *dst, char *src, size_t n)
 		i++;
 	}
 	dst[dstl + i] = '\0';
-	free(src);
 	return (srcl + dstl);
 }
 
@@ -92,6 +92,5 @@ size_t	ft_strlcpy(char *dst, char *src, size_t n)
 		i++;
 	}
 	dst[i] = '\0';
-	free (src);
 	return (j);
 }

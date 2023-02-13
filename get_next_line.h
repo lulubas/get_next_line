@@ -25,6 +25,7 @@ char	*ft_get_buf(int fd, char *to_parse);
 size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strndup(char *str, size_t len);
+char	*ft_get_eol(char *str, size_t len);
 size_t	ft_strlcpy(char *dst, char *src, size_t n);
 size_t	ft_strlcat(char *dst, char *src, size_t n);
 char	*ft_strjoin(char *s1, char *s2);
