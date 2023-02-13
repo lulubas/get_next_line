@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *str)
 {
 	int	i;
 
@@ -37,42 +37,17 @@ char	*ft_strchr(const char *str, int c)
 	return ((char *)str);
 }
 
-char	*ft_strndup(char *str, size_t len)
+char	*ft_strdup(char *str)
 {
 	size_t	n;
 	char	*ctr;
 
 	n = ft_strlen(str);
-	if (len > n)
-		len = n;
-	ctr = (char *)malloc(sizeof(char) * (len + 1));
+	ctr = (char *)malloc(sizeof(char) * (n + 1));
 	if (!ctr)
 		return (0);
-	ft_strlcpy(ctr, str, len + 1);
-	free (str);
+	ft_strlcpy(ctr, str, n + 1);
 	return (ctr);
-}
-
-size_t	ft_strlcat(char *dst, char *src, size_t n)
-{
-	size_t	i;
-	size_t	srcl;
-	size_t	dstl;
-
-	if (!src)
-		return (0);
-	i = 0;
-	srcl = ft_strlen(src);
-	dstl = ft_strlen(dst);
-	if (n <= dstl)
-		return (srcl + n);
-	while (src[i] && (dstl + i) < n - 1)
-	{
-		dst[dstl + i] = src[i];
-		i++;
-	}
-	dst[dstl + i] = '\0';
-	return (srcl + dstl);
 }
 
 size_t	ft_strlcpy(char *dst, char *src, size_t n)

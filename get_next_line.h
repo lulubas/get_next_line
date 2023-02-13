@@ -20,14 +20,13 @@
 # include <string.h>
 
 char	*get_next_line(int fd);
-char	*ft_line_to_print(char *buff_str, int end_of_file);
 char	*ft_get_buf(int fd, char *to_parse);
-size_t	ft_strlen(const char *str);
+char	*ft_to_save(char *str);
+char	*ft_get_print(char *str);
+size_t	ft_strlen(char *str);
 char	*ft_strchr(const char *str, int c);
-char	*ft_strndup(char *str, size_t len);
-char	*ft_get_eol(char *str, size_t len);
+char	*ft_strdup(char *str);
 size_t	ft_strlcpy(char *dst, char *src, size_t n);
-size_t	ft_strlcat(char *dst, char *src, size_t n);
 char	*ft_strjoin(char *s1, char *s2);
 
 #endif

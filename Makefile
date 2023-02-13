@@ -14,7 +14,7 @@
 
 NAME		=	get_next_line.a
 CC			=	gcc
-CFLAGS		=	-g -D BUFFER_SIZE=1 -Wall -Werror -Wextra -I
+CFLAGS		=	-g -D BUFFER_SIZE=10 -Wall -Werror -Wextra -I
 RM			=	rm -f
 AR			=	ar rcs
 
